@@ -1,4 +1,8 @@
 function! http_protocol#edit() abort
+  if expand('%') !=# expand('<amatch>')
+    " Do nothing when the buffer name has changed from <amatch>
+    return
+  endif
   let l:url = expand('<amatch>')
   let l:content = s:request(l:url)
   setlocal modifiable
